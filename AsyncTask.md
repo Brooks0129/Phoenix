@@ -310,12 +310,16 @@ InternalHandler的定义如下：
 	...
 ```
 
+
+
 3. 内存泄漏
 
  如果AsyncTask被声明为Activity的非静态的内部类，那么AsyncTask会保留一个对创建了AsyncTask的Activity的引用。如果Activity已经被销毁，AsyncTask的后台线程还在执行，它将继续在内存里保留这个引用，导致Activity无法被回收，引起内存泄露。
  
  
+ 
 4.  Android中线程对比
+
 		
 		Thread name         | Function         |
 		--------------------|------------------|
