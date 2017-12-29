@@ -320,12 +320,12 @@ InternalHandler的定义如下：
 4.Android中线程对比
 
 		
-		Thread name         | Function         |
-		--------------------|------------------|
-		AsyncTask | Helps get work on/off the UI thread   | 
-		HandlerThread       | Dedicated thread for API callbacks   |
-		[ThreadPool](https://github.com/Brooks0129/Phoenix/blob/master/ThreadPool.md)  | Running lots of parallel work      | 
-		IntentService     | Helps get intents off the UI thread  | 
+|Thread name         | Function         |
+|--------------------|------------------|
+|AsyncTask | Helps get work on/off the UI thread   | 
+|HandlerThread       | Dedicated thread for API callbacks   |
+|[ThreadPool](https://github.com/Brooks0129/Phoenix/blob/master/ThreadPool.md)  | Running lots of parallel work      | 
+|IntentService     | Helps get intents off the UI thread  | 
 
 
 
