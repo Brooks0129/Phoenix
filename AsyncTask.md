@@ -322,10 +322,10 @@ InternalHandler的定义如下：
 		
 |Thread name         | Function         |
 |--------------------|------------------|
-|AsyncTask | Helps get work on/off the UI thread   | 
-|HandlerThread       | Dedicated thread for API callbacks   |
+|[AsyncTask](https://github.com/Brooks0129/Phoenix/blob/master/AsyncTask.md) | Helps get work on/off the UI thread   |
+|[HandlerThread](https://github.com/Brooks0129/Phoenix/blob/master/HandlerThread.md)       | Dedicated thread for API callbacks   |
 |[ThreadPool](https://github.com/Brooks0129/Phoenix/blob/master/ThreadPool.md)  | Running lots of parallel work      | 
-|IntentService     | Helps get intents off the UI thread  | 
+|[IntentService](https://github.com/Brooks0129/Phoenix/blob/master/IntentService.md)     | Helps get intents off the UI thread  |
 
 
 
