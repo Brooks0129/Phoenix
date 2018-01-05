@@ -286,6 +286,70 @@ Log:
 ```
 
 
+当threadLocal实例可以被GC回收时，系统可以检测到该threadLocal对应的Entry是否已经过期（根据reference.get() == null来判断，如果为true则表示过期，程序内部称为stale slots）来自动做一些清除工作，否则如果不清除的话容易产生内存无法释放的问题。value对应的对象即使不再使用，但由于被threadLocalMap所引用导致无法被GC回收。实际代码中，ThreadLocalMap会在set，get以及resize等方法中对stale slots做自动删除（set以及get不保证所有过期slots会在操作中会被删除，而resize则会删除threadLocalMap中所有的过期slots）。当然将threadLocal对象设置为null并不能完全避免内存泄露对象，最安全的办法仍然是调用ThreadLocal的remove方法，来彻底避免可能的内存泄露。
+
+现在再次回到ThreadLocal的源码，我们看一下get方法：
+
+```
+    public T get() {
+        Thread t = Thread.currentThread();
+        ThreadLocalMap map = getMap(t);
+        if (map != null) {
+            ThreadLocalMap.Entry e = map.getEntry(this);
+            if (e != null)
+                return (T)e.value;
+        }
+        return setInitialValue();
+    }
+
+```
+
+把ThreadLocal对象作为key，从ThreadLocalMap中取出对应的value，如果map为null或者取到的entry为null，直接返回setInitialValue方法的值。
+
+```
+    /**
+     * Variant of set() to establish initialValue. Used instead
+     * of set() in case user has overridden the set() method.
+     *
+     * @return the initial value
+     */
+    private T setInitialValue() {
+        T value = initialValue();
+        Thread t = Thread.currentThread();
+        ThreadLocalMap map = getMap(t);
+        if (map != null)
+            map.set(this, value);
+        else
+            createMap(t, value);
+        return value;
+    }
+
+```
+
+这个方法主要用于替代set方法来设置一个value的初始值。将该方法与set方法对比就可以看出二者很相似，不同的是value的值是由initialValue方法获取的。
+
+```
+    protected T initialValue() {
+        return null;
+    }
+
+
+```
+可以看出如果我们手动override这个方法，那么获取到的值就是null。我们可以override该方法代替set方法；
+
+```
+    ThreadLocal<Integer> threadLocal = new ThreadLocal<Integer>() {
+        @Override
+        protected Integer initialValue() {
+            return 666;
+        }
+    };
+
+```
+
+
+
+
     
     
 
