@@ -7,6 +7,7 @@
 * [IntentService](https://github.com/Brooks0129/Phoenix/blob/master/IntentService.md)
 * [ThreadLocal](https://github.com/Brooks0129/Phoenix/blob/master/ThreadLocal.md)
 * [ThreadPool](https://github.com/Brooks0129/Phoenix/blob/master/ThreadPool.md)
+* [Window&WindowManager](https://github.com/Brooks0129/Phoenix/blob/master/Window%26WindowManager.md)
 
 
 
