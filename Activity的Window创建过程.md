@@ -1,6 +1,6 @@
 # Activity的Window创建过程
 
-Activity的启动过程会由ActivityThread中的performLaunchActivity方法来完成整个启动过程，在这个方法内部会通过类加载器创建Activity的实力对象，并调用其attach方法为其关联运行过程中所依赖的一系列上下文环境变量。
+Activity的启动过程会由ActivityThread中的performLaunchActivity方法来完成整个启动过程，在这个方法内部会通过类加载器创建Activity的实例对象，并调用其attach方法为其关联运行过程中所依赖的一系列上下文环境变量。
 
 ```
    private Activity performLaunchActivity(ActivityClientRecord r, Intent customIntent) {
@@ -168,6 +168,8 @@ DecorView是一个FrameLayout，它是Activity中的顶级View，一般来说它
         if (contentParent == null) {
             throw new RuntimeException("Window couldn't find content container view");
         }
+        return contentParent;
+
 ```
 
 
